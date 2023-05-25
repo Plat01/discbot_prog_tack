@@ -1,1 +1,27 @@
 -- create tables
+CREATE TABLE IF NOT EXISTS users (
+    user_id   TEXT PRIMARY KEY
+                   UNIQUE
+                   NOT NULL,
+    is_active BLOB DEFAULT (false) 
+);
+
+CREATE TABLE IF NOT EXISTS tasks (
+    task_id      INTEGER PRIMARY KEY
+                         UNIQUE,
+    text         TEXT    NOT NULL
+                         UNIQUE,
+    test1_input  TEXT    NOT NULL,
+    test1_output TEXT    NOT NULL,
+    test2_input  TEXT,
+    test2_output TEXT,
+    test3_input  TEXT,
+    test3_output TEXT
+);
+
+CREATE TABLE IF NOT EXISTS solved (
+    user  REFERENCES users (user_id) ON DELETE NO ACTION
+                                     ON UPDATE CASCADE
+          NOT NULL,
+    task  REFERENCES tasks (task_id) 
+);
