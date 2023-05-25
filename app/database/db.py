@@ -1,7 +1,14 @@
-import sqlite3
+import asyncio
+
+import aiosqlite
+
+if __name__ == '__main__':
+    async def main():
+        async with aiosqlite.connect("../../database.db") as db:
+            async with db.cursor() as cursor:
+                await cursor.execute("CREATE TABLE IF NOT EXISTS test(id integer)")
+                await cursor.commit():
 
 
-class SQLiter:
-    def __int__(self):
-        self.connect = sqlite3.connect("data.slite3")
-        self.cursor = self.connect.cursor()
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(main())

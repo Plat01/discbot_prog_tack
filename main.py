@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-from app.config import TOKEN
+from app.config import TOKEN, CHANEL_ID
 
 
 intents = discord.Intents.all()
@@ -24,7 +24,7 @@ if __name__ == '__main__':
     @tasks.loop(seconds=24)
     async def send_task():
         print(f"Exercises task is on on channel ")
-        channel = bot.get_channel(1094300838580728002)
+        channel = bot.get_channel(CHANEL_ID)
         tack = "Sthg"
         print(channel)
         await channel.send(tack)
