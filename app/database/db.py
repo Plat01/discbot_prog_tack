@@ -99,6 +99,15 @@ async def get_random_task(db):
             return None
 
 
+async def get_actual_task(db):
+    async with aiosqlite.connect(db) as conn:
+        async with conn.cursor() as cursor:
+            cursor.execute("SELECT task_id, test1_input,test1_output, "
+                           "test2_input, test2_output, test3_input, test3_output "
+                           "FROM tasks WHERE is_actual = 1")
+            return
+
+
 class UserDatabase:
     def __init__(self, db_name):
         self.db_name = db_name
